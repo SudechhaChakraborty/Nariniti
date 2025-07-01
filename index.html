@@ -175,6 +175,25 @@
     <p>&copy; 2025 NariNiti | Empowering Women | Built with ❤️</p>
   </footer>
 
-  <script src="index.js"></script>
+  <script src="https://d1kvcah0n0s1g8.cloudfront.net/lex-web-ui-loader.min.js"></script>
+<script>
+  var loaderOpts = {
+    baseUrl: 'https://d1kvcah0n0s1g8.cloudfront.net/',
+    shouldLoadMinDeps: true
+  };
+  var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+  var chatbotUiConfig = {
+          /* Example of setting session attributes on parent page
+          lex: {
+            sessionAttributes: {
+              userAgent: navigator.userAgent,
+              QNAClientFilter: ''
+            }
+          }
+          */
+        };
+  loader.load(chatbotUiConfig)
+    .catch(function (error) { console.error(error); });
+</script>
 </body>
 </html>
