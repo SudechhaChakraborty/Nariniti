@@ -182,19 +182,16 @@
     shouldLoadMinDeps: true
   };
   var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-
   var chatbotUiConfig = {
-    lex: {
-      region: 'us-east-1', // ✅ Replace with your bot's region
-      botName: 'Lakshmi',  // ✅ Replace with your bot's name
-      botAlias: 'BZPAGDIUHG' // ✅ Replace with your Alias ID (not alias name)
-      sessionAttributes: {
-        userAgent: navigator.userAgent,
-        QNAClientFilter: ''
-      }
-    }
-  };
-
+          /* Example of setting session attributes on parent page
+          lex: {
+            sessionAttributes: {
+              userAgent: navigator.userAgent,
+              QNAClientFilter: ''
+            }
+          }
+          */
+        };
   loader.load(chatbotUiConfig)
     .catch(function (error) { console.error(error); });
 </script>
