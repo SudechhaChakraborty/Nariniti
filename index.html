@@ -177,23 +177,161 @@
 
   <script src="https://d1kvcah0n0s1g8.cloudfront.net/lex-web-ui-loader.min.js"></script>
 <script>
-  var loaderOpts = {
-    baseUrl: 'https://d1kvcah0n0s1g8.cloudfront.net/',
-    shouldLoadMinDeps: true
-  };
-  var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-  var chatbotUiConfig = {
-          /* Example of setting session attributes on parent page
-          lex: {
-            sessionAttributes: {
-              userAgent: navigator.userAgent,
-              QNAClientFilter: ''
-            }
-          }
-          */
-        };
-  loader.load(chatbotUiConfig)
-    .catch(function (error) { console.error(error); });
+  # To run this code you need to install the following dependencies:
+# pip install google-genai
+
+import base64
+import os
+from google import genai
+from google.genai import types
+
+
+def generate():
+    client = genai.Client(
+        api_key=os.environ.get("GEMINI_API_KEY"),
+    )
+
+    model = "gemini-2.5-pro"
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""You are a helpful assistant on my website. Keep replies concise and friendly.
+"""),
+            ],
+        ),
+        types.Content(
+            role="model",
+            parts=[
+                types.Part.from_text(text="""**Framing the Persona**
+
+I'm currently focused on defining the \"helpful assistant\" role. I'm prioritizing concise and friendly communication as the core characteristics, as requested. My thoughts are centering on how to best embody these traits in every response, ensuring I meet the user's needs effectively. I'm exploring different ways to strike the right balance between helpfulness and approachability.
+
+
+**Understanding the Nuance**
+
+I'm now diving deeper into the \"friendly\" aspect. I'm exploring how to weave warmth into my responses without sounding overly casual, keeping the brand's potential persona in mind. I'm also considering potential constraints based on the website's likely purpose. My next step will be generating and evaluating sample responses.
+
+
+**Clarifying My Approach**
+
+I'm now integrating the user's specific request for a helpful assistant. My focus has shifted to crafting an initial response. I'll test out the effectiveness of a concise and friendly greeting paired with a simple promise to align with the user's desired style. The goal is to provide a brief and upbeat confirmation that also demonstrates understanding. I'm aiming for brevity and warmth.
+
+
+**Confirming My Strategy**
+
+I've finalized my approach and generated a sample response that embodies the characteristics I've refined. The goal is to provide an ideal demonstration. I have a firm plan in mind to achieve conciseness and friendliness in a single succinct sentence. My thoughts are set.
+
+
+"""),
+                types.Part.from_text(text="""Got it! I'll be a friendly and concise assistant. Ready when you are! 😊"""),
+            ],
+        ),
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""hello"""),
+            ],
+        ),
+        types.Content(
+            role="model",
+            parts=[
+                types.Part.from_text(text="""**Composing a Greeting**
+
+I've registered the user's input, \"hello,\" and am analyzing my role as a helpful website assistant. Now, I'm brainstorming concise, friendly greetings like \"Hi.\" The next step is to choose the most appropriate response.
+
+
+**Formulating the Response**
+
+I've narrowed down the greeting options after considering \"hello\" as the user's input and my role as a helpful assistant. I focused on concise, friendly options, settling on \"Hi there! How can I help you today?\" for its friendly tone and helpfulness. I'm now exploring the addition of a friendly emoji to enhance the interaction.
+
+
+**Refining the Greeting**
+
+I've selected the greeting \"Hello! How can I help you today?\" as the best choice, meeting the criteria for a concise, friendly response that signals helpfulness. I decided against an emoji for this initial response, preferring a direct and clear greeting. My focus now is on testing and implementing this chosen response.
+
+
+"""),
+                types.Part.from_text(text="""Hello! How can I help you today?"""),
+            ],
+        ),
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""Can you tell me about our services?"""),
+            ],
+        ),
+        types.Content(
+            role="model",
+            parts=[
+                types.Part.from_text(text="""**Beginning to Understand the Request**
+
+I've grasped the user's intent: they're asking about \"our services.\" Understanding my role as a \"helpful assistant\" on this website, I realize my knowledge is likely limited to what's presented here.
+
+
+**Analyzing Potential Solutions**
+
+I've been exploring possible responses. The straightforward approach, stating my lack of information, felt unhelpful. The second solution was similarly unsuitable, as it was clunky and revealed too much about my AI nature. Now, I'm focusing on a more nuanced approach. I'm aiming for a polite deflection that directs the user to the relevant information on the website. I believe this will be a more user-friendly response, effectively addressing their query without disclosing my limitations in a jarring way.
+
+
+**Refining Response Strategies**
+
+I'm now focusing on a combined approach. I'll acknowledge my lack of specific service knowledge, then offer a template response for the user to customize. This dual-pronged strategy addresses both the limitations of my knowledge and the needs of the website owner, providing a proactive and helpful solution. It leans into both Option C and Option D from my prior thought process.
+
+
+**Devising a Combined Approach**
+
+I've crafted a response that acknowledges my limitations while offering a practical solution. First, I'll state that I lack the website's specific service details. Then, I'll provide a template response that the website owner can easily customize. This will create a dual-pronged strategy, both assisting the end-user and proactively helping the website owner. I believe this combines the best of Option C and Option D from my prior brainstorming.
+
+
+**Devising the Optimal Response**
+
+My current approach addresses the user's need directly. I'll gently acknowledge my lack of specific knowledge about the website's services. Then, I'll offer the user a clear path to find the information themselves. For the website owner, I'll suggest providing details so I can generate a custom response. This strategy effectively blends helpfulness and a proactive solution.
+
+
+**Developing the Ideal Response**
+
+I'm now iterating on my response. Building on the previous plan, I'll combine the friendly acknowledgment with a concise explanation of my limitations, and then present a templated service description. It should demonstrate my capability while guiding the user towards their desired information. This strategy aligns perfectly with the 'helpful assistant' persona and avoids revealing my underlying AI nature too directly. I feel this will result in a more natural and user-friendly experience.
+
+
+**Refining and Finalizing the Response**
+
+I'm now satisfied with the response strategy. I'll acknowledge the request with enthusiasm, then explain my lack of pre-programmed service details. To assist, I'll provide a placeholder example detailing Web Design, Digital Marketing, and SEO Optimization. The goal is to act helpfully while avoiding a clunky \"I don't know\" answer. This approach balances assisting the user and proving my potential to the website owner. I feel this approach is natural, friendly, and practical.
+
+
+"""),
+                types.Part.from_text(text="""Of course! Since I don't have the specific details for this website yet, I can't list them.
+
+However, a great answer would look something like this:
+
+\"We specialize in [**Service 1**], [**Service 2**], and [**Service 3**]. Our goal is to [**solve a key problem for the customer**]. Which service can I tell you more about?\""""),
+            ],
+        ),
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""INSERT_INPUT_HERE"""),
+            ],
+        ),
+    ]
+    generate_content_config = types.GenerateContentConfig(
+        thinking_config = types.ThinkingConfig(
+            thinking_budget=-1,
+        ),
+        response_mime_type="text/plain",
+    )
+
+    for chunk in client.models.generate_content_stream(
+        model=model,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        print(chunk.text, end="")
+
+if __name__ == "__main__":
+    generate()
+
+
 </script>
 </body>
 </html>
